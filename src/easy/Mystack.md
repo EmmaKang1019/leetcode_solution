@@ -29,3 +29,37 @@ myStack.top(); // return 2
 myStack.pop(); // return 2
 myStack.empty(); // return False
 
+## Solution
+It's simple thing.
+A stack is a LIFO data structure, while a queue is FIFO. So when we push data, we need to adjust the order.
+That's why we iterate queue.size()-1 times after adding a new element. If we iterate queue.size() times,
+it would end up the same size as a regular queue order. To make it work like a stack, we have to reverse the order.
+So after we put x into the queue, we rotate the existing elements by polling them and offering them back.
+This way most recently added element stays at the front, and we can pop it first, just like a stack.
+
+```commandline
+    Queue<Integer> q;
+    public MyStack() {
+        q = new LinkedList<>();
+    }
+
+    public void push(int x) {
+        q.offer(x);
+        int size = q.size();
+        for(int i = 0; i< size-1; i++){
+            q.offer(q.poll());
+        }
+    }
+
+    public int pop() {
+        return q.poll();
+    }
+
+    public int top() {
+        return q.peek();
+    }
+
+    public boolean empty() {
+        return q.isEmpty();
+    }
+```
