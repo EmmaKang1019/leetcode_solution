@@ -7,12 +7,12 @@ Specifically, ans is the concatenation of two nums arrays.
 Return the array ans.
  */
 public class ConcatenationOfArray {
-    public static void main(String[] args) {
-
-    }
     public int[] getConcatenation(int[] nums) {
-        int[] ans = new int[nums.length *2];
-        for(int i  = 0; i< nums.length; i++){
+        // the question is asking return concatenations array which ans[i]  == nums[i] and ans[i+n] == nums[i]
+        // 1. declare ans which is double length of nums;
+        int[] ans = new int[nums.length*2];
+        // 2. rotate nums by adding ith elements to ans[i] and ans[i+n]
+        for(int i = 0; i< nums.length; i++){
             ans[i] = nums[i];
             ans[i+nums.length] = nums[i];
         }

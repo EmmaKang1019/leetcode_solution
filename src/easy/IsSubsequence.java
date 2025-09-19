@@ -1,4 +1,7 @@
 package easy;
+
+import java.util.Arrays;
+
 /**
  * Given two strings s and t,
  * return true if s is a subsequence of t, or false otherwise.
@@ -10,13 +13,21 @@ package easy;
  */
 public class IsSubsequence {
     public boolean isSubsequence(String s, String t) {
-        char[] tarr = t.toCharArray();
-        int i = 0;
-        for(char c : tarr){
-            if(i<s.length() && s.charAt(i) ==c){
-                i++;
+//        the question is asking return true if given string s is a subsequence of t
+        //I should compare s element with t element. so using two pointer I'll compare
+        // 1. declare s,t pointer respectively
+        int sp = 0;
+        int tp = 0;
+        // 2. rotate while before each pointer reach the lengths;
+        while(sp<s.length() && tp<t.length()){
+            // compare elements and if same, increase s pointer
+            if(s.charAt(sp) == t.charAt(tp)){
+                sp ++ ;
             }
+            // every loop, increase t pointer
+            tp++;
         }
-        return i == s.length();
+        // if s pointer is same size with s.length it's true.
+        return s.length()== sp;
     }
 }

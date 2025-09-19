@@ -7,16 +7,20 @@ package easy;
  * After doing so, return the array.
  */
 public class ReplaceElementsWithGreatestElementOnRightSide {
-    public static void main(String[] args) {
-
-    }
     public int[] replaceElements(int[] arr) {
-        int[] res = new int[arr.length];
+        /*
+        the question is asking return array which replaced every element in given array
+        with the greatest element among the elements to its right. and replace the last element with -1;
+         */
+        // 1. declare answer array
+        int[] ans = new int[arr.length];
+        // 1-2. declare max value for compare largest value and initialized with -1 cuz last index is -1;
         int max = -1;
-        for(int i = arr.length-1; i >= 0; i--){
-            res[i] = max;
+        // 2. for searching quickly we can search from the right so that we can find biggest element
+        for(int i = arr.length-1; i>=0; i--){
+            ans[i] = max;
             max = Math.max(max, arr[i]);
         }
-        return res;
+        return ans;
     }
 }

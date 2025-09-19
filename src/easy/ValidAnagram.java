@@ -1,5 +1,6 @@
 package easy;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -7,17 +8,18 @@ import java.util.Arrays;
  * return true if t is an anagram of s, and false otherwise.
  */
 public class ValidAnagram {
-    public static void main(String[] args) {
-
-    }
     public boolean isAnagram(String s, String t) {
+        // using Arrays's sort. because anagram is a word made by using the letter in different order.
+        // so we can check this ascending order.
+        // 0. before we can check with length.
         if(s.length() != t.length()) return false;
-        char[] arrS = s.toCharArray();
-        char[] arrT = t.toCharArray();
-        Arrays.sort(arrT);
-        Arrays.sort(arrS);
-
-        return Arrays.equals(arrS, arrT);
-
+        // 1. make an array
+        char[] arrs = s.toCharArray();
+        char[] arrt = t.toCharArray();
+        // 2. sort an array;
+        Arrays.sort(arrs);
+        Arrays.sort(arrt);
+        // return boolean value it is equal or not
+        return Arrays.equals(arrs,arrt);
     }
 }
