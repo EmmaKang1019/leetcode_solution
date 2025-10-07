@@ -1,5 +1,6 @@
 package easy;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,36 +15,36 @@ import java.util.List;
  *  If key does not exist in the HashSet, do nothing.
  */
 public class MyHashSet {
-    private int size;
-    private List<List<Integer>> buckets;
+    private final int size = 100;
+    private ArrayList<Integer>[] buckets;
 
     public MyHashSet() {
-        size = 1000;
-        buckets = new ArrayList<>(size);
-        for(int i = 0; i<size; i++){
-            buckets.add(new LinkedList<>()  );
+        buckets = new ArrayList[size];
+        for(int i = 0; i< size; i++){
+            buckets[i] = new ArrayList<>();
         }
     }
+
+    private int hashFunction(int key){
+        return key %size;
+    }
     public void add(int key) {
-        int index = hash(key);
-        List<Integer> bucket = buckets.get(index);
-        if(!bucket.contains(key)){
-            bucket.add(key);
+        int index = hashFunction(key);
+        ArrayList<Integer> bucket = buckets[index];
+        if( !bucket.contains(key)){
+            bucket.add(key) ;
         }
     }
 
     public void remove(int key) {
-        int index = hash(key);
-        List<Integer> bucket = buckets.get(index);
-        bucket.remove(Integer.valueOf(key));
+        int index = hashFunction(key);
+        ArrayList<Integer> bucket = buckets[index];
+        bucket.remove((Integer)key);
     }
 
     public boolean contains(int key) {
-        int index = hash(key);
-        List<Integer> bucket = buckets.get(index);
+        int index = hashFunction(key);
+        ArrayList<Integer> bucket = buckets[index];
         return bucket.contains(key);
-    }
-    private int hash(int key){
-        return key % size;
     }
 }

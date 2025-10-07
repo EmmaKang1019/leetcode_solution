@@ -15,23 +15,27 @@ import java.util.Map;
 public class WordPattern {
     public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
-        if(words.length != pattern.length()) return false;
+        if(pattern.length() != words.length)return false;
 
-        Map<Character, String> charToWord = new HashMap<>();
-        Map<String, Character> wordToChar = new HashMap<>();
-
-        for(int i = 0; i< pattern.length(); i++){
-            char c = pattern.charAt(i);
+        HashMap<Character, String> patterMap = new HashMap<>();
+        HashMap<String, Character> wordMap = new HashMap<>();
+        for(int i = 0; i<pattern.length(); i++){
             String word = words[i];
+            char pat = pattern.charAt(i);
 
-            if(!charToWord.containsKey(c)) charToWord.put(c,word);
-            if(!wordToChar.containsKey(word)) wordToChar.put(word,c);
+            if(! patterMap.containsKey(pat)) {
+                patterMap.put(pat, word);
+            }
+            if(! wordMap.containsKey(word)){
+                wordMap.put(word, pat);
+            }
 
-            if(!charToWord.get(c).equals(word) || !wordToChar.get(word).equals(c)){
+            if(! patterMap.get(pat).equals(word) || !wordMap.get(word).equals(pat)){
                 return false;
             }
         }
-        return true;
+            return true;
+
     }
 
 }

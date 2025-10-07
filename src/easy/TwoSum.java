@@ -10,14 +10,22 @@ import java.util.HashMap;
  */
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer,Integer> map = new HashMap();
-        int[] answer = new int[2];
-        for(int i = 0; i< nums.length; i++){
-            int temp = target - nums[i];
-            if(map.containsKey(temp)) answer = new int[]{map.get(temp), i};
-            map.put(nums[i],i);
-        }
+        //the question is asking return indices array which add up to target
+        // I'm going to solve this problem using hash map. for searching quickly
+        // and in each iteration I put the current value into the hashmap, and I'll check the differences
+        // between the target and the current element. If that differences is already in the hashmap, I'll return the result
 
-        return answer;
+        // declare the hash map
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        // I'm going thur loop
+        for (int i = 0; i< nums.length;i ++){
+            // declare num each element of nums array
+            int num = nums[i];
+            if(hash.containsKey(target-num)){
+                return new int[]{i, hash.get(target-num)};
+            }
+            hash.put(num, i);
+        }
+        return new int[]{};
     }
 }

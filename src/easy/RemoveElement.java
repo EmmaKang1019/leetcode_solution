@@ -17,13 +17,23 @@ import java.util.List;
  */
 public class RemoveElement {
     public int removeElement(int[] nums, int val) {
-     int k = 0;
-     for(int i =0; i<nums.length; i++){
-         if(nums[i]!=val){
-             nums[k] = nums[i];
-             k++;
-         }
-     }
-     return k;
+        /*
+        the question is asking return the number of array which not equal number with val in each elements of nums array
+        and the array inplace not eqaul value with val
+        so move not equal value forward
+         */
+
+        // declare and initialize k
+        int k = 0;
+        // rotate nums array
+        for(int i = 0; i<nums.length-1; i++){
+            // check the current element with val. if not equal move front with k as index.
+            if(nums[i] != val){
+                nums[k] = nums[i];
+                // as soon as change value, increase k
+                k++;
+            }
+        }
+        return k;
     }
 }

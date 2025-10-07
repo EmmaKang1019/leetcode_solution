@@ -12,21 +12,20 @@ import java.util.List;
  */
 public class MaximumNumberOfBalloons {
     public int maxNumberOfBalloons(String text) {
-        int b = 0, a=0, l=0, o=0, n=0;
-        int count = 0;
-        for(char ch : text.toCharArray()){
-            switch (ch){
-                case 'a' : a++;
-                case 'b' : b++;
-                case 'l' : l++;
-                case 'n' : n++;
-                case 'o' : o++;
-            }
-            if(a>=1 && b>=1 && l>=2 && o>=2 && n>=1){
-                count++;
-                a-=1; b-=1; l-=2; o-=2; n-=1;
+        /**
+         * the question is asking return the maximum bumber of instance =of the word ballon can be formed
+         */
+        int b = 0, a = 0, n = 0, l = 0, o = 0;
+        for(char s:text.toCharArray()){
+            switch (s){
+                case 'b' : b++; break;
+                case 'a' : a++; break;
+                case 'n' : n++; break;
+                case 'l' : l++; break;
+                case 'o' : o++; break;
             }
         }
-        return count;
+        return Math.min(Math.min(l/2, o/2), Math.min(Math.min(b,a),n));
+
     }
 }

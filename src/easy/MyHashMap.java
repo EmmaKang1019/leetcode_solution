@@ -1,64 +1,60 @@
 package easy;
 
 class Node{
-    int key;
-    int val;
+    int key ;
+    int value;
     Node next;
 
-    Node(int key, int val){
+    public Node(int key, int value){
         this.key = key;
-        this.val = val;
-        this.next = null;
+        this.value = value;
     }
 }
 public class MyHashMap {
 
-    private Node[] map;
-
+    private Node[] buckets;
     public MyHashMap() {
-        map = new Node[1000];
-        for(int i= 0; i<1000; i++){
-            map[i] = new Node(-1,-1);
+        buckets = new Node[1000];
+        for(int i = 0; i< 1000; i++){
+            buckets[i] = new Node(-1,-1);
         }
     }
 
+    private int hash(int key){
+        return key % 1000;
+    }
     public void put(int key, int value) {
-        int hash = hash(key);
-        Node cur = map[hash];
-        while(cur.next != null){
-            if(cur.next.key == key){
-                cur.next.val = value;
+        int idx = hash(key);
+        Node prev = buckets[idx];
+        while( prev.next != null){
+            if(prev.next.key == key){
+                prev.next.value = value;
                 return;
             }
-            cur = cur.next;
+            prev = prev.next;
         }
-        cur.next = new Node(key, value);
+        prev.next = new Node(key, value);
     }
 
     public int get(int key) {
-        int hash = hash(key);
-        Node cur = map[hash].next;
-        while(cur != null){
-            if(cur.key == key){
-                return cur.val;
-            }
-            cur = cur.next;
+        int idx = hash(key);
+        Node prev = buckets[idx].next;
+        while(prev !=null){
+            if(prev.key == key) return prev.value;
+            prev = prev.next;
         }
         return -1;
     }
 
     public void remove(int key) {
-        int hash = hash(key);
-        Node cur = map[hash];
-        while(cur.next!=null){
-            if(cur.next.key == key){
-                cur.next = cur.next.next;
+        int idx = hash(key);
+        Node prev = buckets[idx];
+        while( prev.next != null){
+            if(prev.next.key == key){
+                prev.next = prev.next.next;
                 return;
             }
-            cur = cur.next;
+            prev = prev.next;
         }
-    }
-    private int hash(int key){
-        return key % 1000;
     }
 }

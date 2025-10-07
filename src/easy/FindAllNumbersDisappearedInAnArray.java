@@ -1,8 +1,6 @@
 package easy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Given an array nums of n integers
@@ -11,25 +9,34 @@ import java.util.List;
  * that do not appear in nums.
  */
 public class FindAllNumbersDisappearedInAnArray {
-    public static void main(String[] args) {
-        System.out.println(findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1}));
-    }
     public static List<Integer> findDisappearedNumbers(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-        int idx = -1;
-        for(int i = 0; i<nums.length; i++){
-            if(nums[i]< 0){
-                idx = nums[i]*-1 -1;
-            }else{
-                idx = nums[i]-1;
-            }
-            if(nums[idx]>0){
-                nums[idx] = -nums[idx];
-            }
+        /**
+         * the question is asking return all an array of all the integers in the range 1,n that do not appear in nums
+         * I'll solve this problem using hash set.
+         * i'll iterate the given array, add to list a number that not appear
+         */
+//        BruteForce
+//        HashSet<Integer> set = new HashSet<>();
+//        for(it n : nums){
+//            set.add(n);
+//        }
+//        List<Integer> list = new ArrayList<>();
+//        for(int i = 1; i<= nums.length; i++){
+//            if(!set.contains(i)) list.add(i);
+//        }
+//        return list;
+
+//            [3,1,4,2]
+        int index = -1;
+        for(int i = 0; i< nums.length;i ++){
+            index = Math.abs(nums[i])-1;
+
+            if(nums[index]>0) nums[index] *=-1;
         }
-        for(int i = 0; i<nums.length; i++){
-            if(nums[i] > 0) list.add(i);
+        List<Integer> li = new ArrayList<>();
+        for (int i = 0; i<nums.length; i++){
+            if(nums[i]>0) li.add(i+1);
         }
-        return list;
+        return li;
     }
 }
