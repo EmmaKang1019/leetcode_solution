@@ -1,26 +1,30 @@
 package easy;
 
+import java.util.HashMap;
+
 public class ValidPalindrome2 {
     public boolean validPalindrome(String s) {
-        int left = 0;
-        int right = s.length()-1;
 
-        while (left < right) {
-            if (s.charAt(left) != s.charAt(right)) {
-                return isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1);
-            }
-            left++;
-            right--;
+        /**
+         * The question is asking if the s can be palindrome after deleting at most one character from it then return true
+         *
+         * I'm going to search s
+         * check a and a is same, and be is middle.
+         *
+         * abca
+         * a and last a is same
+         * b and second last c is not same
+         * but just only one return true
+         *
+         * abc
+         * a and c is not smae
+         * and middle b
+         */
+        HashMap<Character, Character> hash = new HashMap<>();
+        int left=0, right = s.length()-1;
+        while(left<=right){
+        
         }
-        return true;
-    }
-    private boolean isPalindrome(String s, int left, int right){
-        while(left < right){
-            if(s.charAt(left) != s.charAt(right)) return false;
-
-            left ++;
-            right --;
-        }
-        return true;
+        return false;
     }
 }

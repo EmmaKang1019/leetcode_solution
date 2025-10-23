@@ -10,12 +10,11 @@ package easy;
  */
 public class ValidPalindrome {
     public boolean isPalindrome(String s) {
-        s = s.toLowerCase().replaceAll("[^a-z0-9]","");
-        int left = 0;
+        s = s.toLowerCase().replaceAll(" ", "").replaceAll("[^a-z0-9]","");
         int right = s.length()-1;
-        while(left<right){
-            if (s.charAt(left) != s.charAt(right)) return false;
-            left ++;
+        char[] ch = s.toCharArray();
+        for(int i = 0; i< s.length(); i++){
+            if( ch[i] !=ch[right]) return false;
             right --;
         }
         return true;

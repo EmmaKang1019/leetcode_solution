@@ -8,15 +8,17 @@ package easy;
  */
 public class ReplaceElementsWithGreatestElementOnRightSide {
     public int[] replaceElements(int[] arr) {
-        /*
-        the question is asking return array which replaced every element in given array
-        with the greatest element among the elements to its right. and replace the last element with -1;
+        /**
+         * The question is asking return array that consist of greatest element among the elements to its right in given array
+         * and the last element of return array is -1
          */
-        // 1. declare answer array
+      /*
+      for this question I should check righgt element except for current element.
+      so I'm going to check from last index.
+      and fill the ans array from last index.
+       */
         int[] ans = new int[arr.length];
-        // 1-2. declare max value for compare largest value and initialized with -1 cuz last index is -1;
         int max = -1;
-        // 2. for searching quickly we can search from the right so that we can find biggest element
         for(int i = arr.length-1; i>=0; i--){
             ans[i] = max;
             max = Math.max(max, arr[i]);

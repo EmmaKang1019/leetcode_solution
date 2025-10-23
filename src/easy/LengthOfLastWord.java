@@ -9,9 +9,14 @@ import java.util.Arrays;
  */
 public class LengthOfLastWord {
     public static int lengthOfLastWord(String s) {
-        // The question is asking return the length of the last word in the string and A word is a maxinal substring non- space characters only
-        // I'm going to solve this using Substring adding String array and get last index;
-        String[] arr = s.split(" ");
-        return arr[arr.length-1].length();
+        /**
+         * The question is asking return the length of the last word
+         */
+        /*
+        according to example, given string is Hello world.
+        I'll check the last word
+         */
+        String[] last = s.split(" ");
+        return  last[last.length-1].length();
     }
 }

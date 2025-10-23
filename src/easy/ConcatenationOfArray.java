@@ -8,13 +8,20 @@ Return the array ans.
  */
 public class ConcatenationOfArray {
     public int[] getConcatenation(int[] nums) {
-        // the question is asking return concatenations array which ans[i]  == nums[i] and ans[i+n] == nums[i]
-        // 1. declare ans which is double length of nums;
+        /*
+        the question is asking return array that has 2 times length with given array nums
+        and the return array consist of element i == i and i+n == i
+         */
+        /*
+        according to example, given array is 1,2,1 so I'm going to iterate given array and set element of ans array
+         */
+
+        // declare array
         int[] ans = new int[nums.length*2];
-        // 2. rotate nums by adding ith elements to ans[i] and ans[i+n]
+
         for(int i = 0; i< nums.length; i++){
             ans[i] = nums[i];
-            ans[i+nums.length] = nums[i];
+            ans[nums.length+i] = nums[i];
         }
         return ans;
     }

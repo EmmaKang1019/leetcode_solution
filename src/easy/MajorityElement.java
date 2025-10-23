@@ -11,17 +11,26 @@ import java.util.HashMap;
  */
 public class MajorityElement {
     public int majorityElement(int[] nums) {
-        HashMap<Integer, Integer> hash = new HashMap<>();
-        int major = 0;
-        int majorNum = 0;
+        /**
+         * the question is asking return the element that appears more than half of n times.
+         * and I can assume this elements always exists.
+         * I'll solve this problem to visiting every element, store value and how many times it appears in the hash map
+         * for example, nums = 3,2,3
+         * so index 0 : key : 3, value : 1
+         * majority : 1, theNumber : 3
+         *
+         * and index 1 : key 2 value 1.
+         * hashMap : 3:1, 2:1
+         * compare with majority and frequency of current number
+         * 1 : 1
+         * current number loses. so we don't update majority and theNumber
+         * majority : 1, the number : 3
+         *
+         * index 2 : hashMap : 3:2, 2:1
+         * compare with majority and frequency of current number
+         * 1 : 2
+         * frequency of current number win. so we change majority to 2, and the number is 3
+         */
 
-        for(int n : nums ){
-            hash.put(n, hash.getOrDefault(n,0)+1);
-            if(hash.get(n)>major) {
-                major = hash.get(n);
-                majorNum = n;
-            }
-        }
-        return majorNum;
     }
 }

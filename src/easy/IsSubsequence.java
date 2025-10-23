@@ -13,21 +13,27 @@ import java.util.Arrays;
  */
 public class IsSubsequence {
     public boolean isSubsequence(String s, String t) {
-//        the question is asking return true if given string s is a subsequence of t
-        //I should compare s element with t element. so using two pointer I'll compare
-        // 1. declare s,t pointer respectively
-        int sp = 0;
-        int tp = 0;
-        // 2. rotate while before each pointer reach the lengths;
-        while(sp<s.length() && tp<t.length()){
-            // compare elements and if same, increase s pointer
-            if(s.charAt(sp) == t.charAt(tp)){
-                sp ++ ;
+        /**
+         * The question is asking check whether given two string is subsequence or not.
+         * if s is a subsequence of t, we can make s from t by deleting some words without disturbing order
+         */
+        /*
+        according to example, s is abc and t is ahbgdc. if we delete h g d, we can make s
+        t를 순회하면서 s의 값과 체크
+        0; a/a store a
+        1; b/h skip
+            b/b store a
+        투포인터 사용?
+
+         */
+        int i = 0;
+        int j = 0;
+        while(i<s.length() && j < t.length()){
+            if(s.charAt(i) == t.charAt(j)){
+                i++;
             }
-            // every loop, increase t pointer
-            tp++;
+            j++;
         }
-        // if s pointer is same size with s.length it's true.
-        return s.length()== sp;
+        return i == s.length();
     }
 }

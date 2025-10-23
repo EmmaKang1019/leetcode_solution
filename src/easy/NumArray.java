@@ -18,7 +18,7 @@ public class NumArray {
     int[] prefixSum;
     public NumArray(int[] nums) {
         prefixSum = new int[nums.length+1];
-        for(int i = 1; i<=nums.length; i++){
+        for(int i =1; i<= nums.length; i++){
             prefixSum[i] = prefixSum[i-1] + nums[i-1];
         }
     }
